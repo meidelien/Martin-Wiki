@@ -1,0 +1,67 @@
+/* ToC
+1. style.css
+
+#HvaGjørDette
+{{UiOslo_Norway}} 
+
+
+
+#IGEM_TopBar template
+{{IGEM_TopBar}}
+https://2020.igem.org/wiki/index.php?title=Template:IGEM_TopBar&action=edit
+
+#custom topbar
+{{Template:UiOslo_Norway/TopBar}}
+https://2020.igem.org/Template:UiOslo_Norway/TopBar
+
+
+# Style.css
+
+https://2020.igem.org/Team:UiOslo_Norway/styles.css?action=edit
+
+https://2020.igem.org/Template:UiOslo_Norway/css/styles?action=edit
+
+#Skeleton.css
+
+https://2020.igem.org/Template:UiOslo_Norway/css/skeleton?action=raw&ctype=text/css
+
+#Custom.css
+https://2020.igem.org/Template:UiOslo_Norway/css/custom?action=raw&ctype=text/css
+https://2020.igem.org/Template:UiOslo_Norway/css/custom?action=edit
+
+
+#Head.html  (Contains site wide styles)
+{{Template:UiOslo_Norway/Head}}
+{{Template:UiOslo_Norway/Head}}
+
+https://2020.igem.org/Template:UiOslo_Norway/Head
+https://2020.igem.org/Template:UiOslo_Norway/Head?action=edit
+
+# Header.html
+{{Template:UiOslo_Norway/Header}}
+
+https://2020.igem.org/Template:UiOslo_Norway/Header
+https://2020.igem.org/Template:UiOslo_Norway/Header?action=edit
+
+
+
+https://2020.igem.org/Team:UiOslo_Norway/Header.html?action=edit
+
+
+#jQUERY
+http://2020.igem.org/Team:UiOslo_Norway/CSS/jquery?action=raw&ctype=text/javascript
+
+
+
+# Footer.html
+https://2020.igem.org/Team:UiOslo_Norway/Footer.html?action=edit
+
+https://2020.igem.org/Template:UiOslo_Norway/Footer?action=edit
+
+#Font-awesome
+
+https://2020.igem.org/Template:UiOslo_Norway/fa/fontawesome?action=raw&ctype=text/css # to be used when referenced in html
+
+https://2020.igem.org/Template:UiOslo_Norway/fa/brands?action=raw&ctype=text/css # to be used when referenced in html
+
+https://2020.igem.org/Template:UiOslo_Norway/fa/solid?action=raw&ctype=text/css # to be used when referenced in html

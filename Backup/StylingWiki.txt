@@ -1,0 +1,10 @@
+#Insert at top of every page
+
+{{Template:UiOslo_Norway/Head}}
+{{Template:UiOslo_Norway/Header}}
+{{Template:UiOslo_Norway/TopBar}}
+
+
+#Insert at bottom of every page
+
+{{Template:UiOslo_Norway/Footer}}
