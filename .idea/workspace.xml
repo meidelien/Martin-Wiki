@@ -2,16 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7b9ad49-7782-4a2c-9bc6-806eb5aca9af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team_testing_2018_settings.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FileListLinks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/FileListLinks.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Martin_logo_title_ideas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Martin_logo_title_ideas.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Team.html" beforeDir="false" afterPath="$PROJECT_DIR$/Team.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team_presentation.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Team_presentation.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -22,11 +29,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/2020-igem-wiki/iGEM 2018 Wiki" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -42,10 +50,29 @@
       <updated>1594893359777</updated>
       <workItem from="1594893360891" duration="1724000" />
       <workItem from="1594895266664" duration="2373000" />
+      <workItem from="1594975680352" duration="1616000" />
+      <workItem from="1595058733946" duration="1512000" />
+      <workItem from="1595070633368" duration="42000" />
+      <workItem from="1595500528778" duration="5583000" />
+      <workItem from="1595507696062" duration="310000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="588" y="173" key="FileChooserDialogImpl" timestamp="1595500585112">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="588" y="173" key="FileChooserDialogImpl/0.40.1920.1040/-1920.40.1920.1040@0.40.1920.1040" timestamp="1595500585112" />
+    <state x="768" y="472" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595503665374">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="768" y="472" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.40.1920.1040/-1920.40.1920.1040@0.40.1920.1040" timestamp="1595503665374" />
+    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup" timestamp="1595503890328">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup/0.40.1920.1040/-1920.40.1920.1040@0.40.1920.1040" timestamp="1595503890328" />
   </component>
 </project>

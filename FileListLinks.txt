@@ -1,6 +1,6 @@
-https://2020.igem.org/wiki/images/9/9d/T--UiOslo_Norway--fumehood.png # Safetyform
+https://2020.igem.org/wiki/images/9/9d/T--UiOslo_Norway--fumehood.png # Safety form
 
-https://2020.igem.org/wiki/images/b/b1/T--UiOslo_Norway--LabBench1.png # Safetyform
+https://2020.igem.org/wiki/images/b/b1/T--UiOslo_Norway--LabBench1.png # Safety form
 
 https://2020.igem.org/wiki/images/d/d5/T--UiOslo_Norway--FirstLandingImage.jpg # FirstLandingImage
 
@@ -9,3 +9,5 @@ https://2020.igem.org/File:T--UiOslo_Norway--Muhammed.jpg #Muhammed
 https://2020.igem.org/File:T--UiOslo_Norway--JonasBilde.jpg #Jonas
 
 https://2020.igem.org/File:T--UiOslo_Norway--Alexander.jpg #Alexander
+
+https://2020.igem.org/File:T--UiOslo_Norway--Martin.jpg #Martin

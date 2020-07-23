@@ -1,1 +1,25 @@
 Team presentation text
+https://2020.igem.org/File:T--UiOslo_Norway--Alexander.jpg #Alexander
+
+Alexander Refsnes is a 43 years old family man. He is now collecting data for his master thesis in biological sciences on 
+bioengineering with a focus on solving fish diseases in salmon. When not on his desk or in the lab he likes doing outdoor sport activities.
+
+
+https://2020.igem.org/File:T--UiOslo_Norway--Muhammed.jpg #Muhammed
+
+Muhammed is studying in the Department of Molecular Biology and Genetics. This year, he gave his thesis on the effects of salinomycin, one of the basic chemicals of the project, on cancer stem cells. 
+He says he is involved in iGEM because he has an interest in biotechnology and wants to improve his practical lab skills. He enjoys spending his free time with computer games and books. 
+
+ 
+
+Fun fact: He enjoys watching lawn-mowing videos on the internet. 
+
+
+<Martin>
+
+https://2020.igem.org/File:T--UiOslo_Norway--JonasBilde.jpg #Jonas
+
+
+Jonas is 23 years old and is doing his master in cybernetics and autonomous systems at UiO. 
+In our iGEM team he is mostly invested in the construction of a diagnostics system based on behavioural changes in fish.
+Out side of iGEM he works with swarm intelligence and how it can be applied to control a group of micro underwater gliders. 
