@@ -42,7 +42,7 @@ https://2020.igem.org/wiki/images/d/d6/T--UiOslo_Norway--1.6_DpnI_Digestion.pdf
 2.1 Gibson assembly of vector and amplified insert
 https://2020.igem.org/wiki/images/f/f7/T--UiOslo_Norway--2.1_Gibson_assembly_of_vector_and_amplified_insert.pdf
 
-2.2 Preparing chemically competent DH5α cells
+2.2 Preparing chemically competent DH5α cells PROBABLY NEEDS REUPLOAD TO FIX
 https://2020.igem.org/wiki/images/a/a5/T--UiOslo_Norway--2.2_Preparing_chemically_competent_DH5%CE%B1_cells.pdf
 
 3.1 Transformation of chemically competent cells
