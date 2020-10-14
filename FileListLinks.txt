@@ -1,3 +1,6 @@
+##########
+# IMAGES #
+##########
 https://2020.igem.org/wiki/images/9/9d/T--UiOslo_Norway--fumehood.png # Safety form
 
 https://2020.igem.org/wiki/images/b/b1/T--UiOslo_Norway--LabBench1.png # Safety form
@@ -11,3 +14,55 @@ https://2020.igem.org/File:T--UiOslo_Norway--JonasBilde.jpg #Jonas
 https://2020.igem.org/File:T--UiOslo_Norway--Alexander.jpg #Alexander
 
 https://2020.igem.org/File:T--UiOslo_Norway--Martin.jpg #Martin
+
+
+
+
+#################
+# LAB PROTOCOLS #
+#################
+1.1 Isolation of gDNA from Streptomyces albus
+https://2020.igem.org/wiki/images/0/00/T--UiOslo_Norway--1.1_Isolation_of_gDNA_from_Streptomyces_albus.pdf
+
+1.2 Amplification of SlnR from Streptomyces albus gDNA
+https://2020.igem.org/wiki/images/c/cd/T--UiOslo_Norway--1.2_Amplification_of_SlnR_from_Streptomyces_albus_gDNA.pdf
+
+1.3 PCR purification via QIAGEN PCR cleanup
+https://2020.igem.org/wiki/images/9/90/T--UiOslo_Norway--1.3_PCR_purification_via_QIAGEN_PCR_cleanup.pdf
+
+1.4 Miniprep of pBAD_His from bacterial strain
+https://2020.igem.org/wiki/images/7/73/T--UiOslo_Norway--1.4_Miniprep_of_pBAD_His_from_bacterial_strain.pdf
+
+1.5 Amplification of pBAD_His vector via Phusion PCR
+https://2020.igem.org/wiki/images/5/5a/T--UiOslo_Norway--1.5_Amplification_of_pBAD_His_vector_via_Phusion_PCR.pdf
+
+1.6 DpnI Digestion
+https://2020.igem.org/wiki/images/d/d6/T--UiOslo_Norway--1.6_DpnI_Digestion.pdf
+
+2.1 Gibson assembly of vector and amplified insert
+https://2020.igem.org/wiki/images/f/f7/T--UiOslo_Norway--2.1_Gibson_assembly_of_vector_and_amplified_insert.pdf
+
+2.2 Preparing chemically competent DH5α cells
+https://2020.igem.org/wiki/images/a/a5/T--UiOslo_Norway--2.2_Preparing_chemically_competent_DH5%CE%B1_cells.pdf
+
+3.1 Transformation of chemically competent cells
+https://2020.igem.org/wiki/images/e/e6/T--UiOslo_Norway--3.1_Transformation_of_chemically_competent_cells.pdf
+
+3.2 Verifying cloning with colony PCR
+https://2020.igem.org/wiki/images/9/9f/T--UiOslo_Norway--3.2_Verifying_cloning_with_colony_PCR.pdf
+
+3.3 Extraction of plasmid DNA from DH5α cells using QIAprep Spin Miniprep Kit
+https://2020.igem.org/wiki/images/5/5a/T--UiOslo_Norway--f3.3_Extraction_of_plasmid_DNA_from_DH5%CE%B1_cells_using_QIAprep_Spin_Miniprep_Kit.pdf
+
+3.4 Verification of insert via sequencing of transformants
+https://2020.igem.org/wiki/images/4/4e/T--UiOslo_Norway--3.4_Verification_of_insert_via_sequencing_of_transformants.pdf
+
+4.1 Expression and purification of protein of interest
+https://2020.igem.org/wiki/images/f/f0/T--UiOslo_Norway--4.1_Expression_and_purification_of_protein_of_interest.pdf
+
+4.2 Electrophoretic mobility shift assay 
+https://2020.igem.org/wiki/images/8/82/T--UiOslo_Norway--4.2_Electrophoretic_mobility_shift_assay_.pdf
+
+
+
+
