@@ -5,7 +5,7 @@ https://2020.igem.org/wiki/images/9/9d/T--UiOslo_Norway--fumehood.png # Safety f
 
 https://2020.igem.org/wiki/images/b/b1/T--UiOslo_Norway--LabBench1.png # Safety form
 
-https://2020.igem.org/wiki/images/d/d5/T--UiOslo_Norway--FirstLandingImage.jpg # FirstLandingImage
+https://2020.igem.org/wiki/images/d/d5/T--UiOslo_Norway--FirstLandingImage.jpg # FirstLandingImage OLD OLD OLD
 
 https://2020.igem.org/File:T--UiOslo_Norway--Muhammed.jpg #Muhammed
 
@@ -15,6 +15,17 @@ https://2020.igem.org/File:T--UiOslo_Norway--Alexander.jpg #Alexander
 
 https://2020.igem.org/File:T--UiOslo_Norway--Martin.jpg #Martin
 
+#### LOGO ####
+
+No project title
+https://2020.igem.org/wiki/images/3/3f/T--UiOslo_Norway--LOGO_NO_TITLE.png
+https://2020.igem.org/wiki/images/thumb/3/3f/T--UiOslo_Norway--LOGO_NO_TITLE.png/800px-T--UiOslo_Norway--LOGO_NO_TITLE.png
+https://2020.igem.org/wiki/images/thumb/3/3f/T--UiOslo_Norway--LOGO_NO_TITLE.png/320px-T--UiOslo_Norway--LOGO_NO_TITLE.png
+
+With Project Title
+https://2020.igem.org/wiki/images/e/ed/T--UiOslo_Norway--LOGO_W_TITLE.png
+https://2020.igem.org/wiki/images/thumb/e/ed/T--UiOslo_Norway--LOGO_W_TITLE.png/800px-T--UiOslo_Norway--LOGO_W_TITLE.png
+https://2020.igem.org/wiki/images/thumb/e/ed/T--UiOslo_Norway--LOGO_W_TITLE.png/320px-T--UiOslo_Norway--LOGO_W_TITLE.png
 
 
 
