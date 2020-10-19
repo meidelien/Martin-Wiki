@@ -1,0 +1,127 @@
+{{Template:UiOslo_Norway/Head}}
+{{Template:UiOslo_Norway/Header}}
+{{Template:UiOslo_Norway/TopBar}}
+
+<html>
+<head>
+  <style>
+
+  p {
+    text-align: justify;
+  }
+
+  .front {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  }
+
+  #int1, #int2, #int3, #int4, #int5, #int6, #int7, #int8, #int9 {
+    display: none;
+  }
+
+  .quotebox {
+  display: block;
+  background: #fff;
+  padding: 15px 20px 15px 80px;
+  margin: 0 0 20px;
+  position: relative;
+  font-size: 1em;
+  line-height: 1.2;
+  color: #666;
+  text-align: justify;
+  border-left: 15px solid #ec407a;
+  border-right: 2px solid #ec407a;
+  box-shadow: 2px 2px 15px #ccc;
+}
+  </style>
+
+</head>
+<div class="container">
+
+<h5>Integrated Human Practices</h5>
+<p>One of the silver requirements for the iGEM competition is to incorporate human practices into the project. This is done by careful and creative evaluation of whether the project is responsible and will bring good to the world. We therefore gathered information from experts in their respective fields, which provided new perspectives and valuable insight.</p>
+<p>
+    <h1>Integrated Human Practices</h1>
+    </p>
+    <p>
+    At the start of our project, we intended to build a stochastic model with enough tunable parameters to represent individual fish. We then wanted to use monitoring data from aquaculture ponds, such as cameras, to tune the model by adjusting these parameters. This model would then generate data for our detection system.
+    </p>
+    <p>
+    Given a detection system, in our case consisting of a set of sensors gathering data, followed by feature extraction, finally we feed the features to a classifier who assigns our data to a predefined category. This can of course be extended, by for example assigning a probability to a classification. An example of this system could be cameras filming a fish school, then estimating their total velocity giving a scalar for some given resolution. Then feeding this time series into a neural net.
+    </p>
+    <p>
+    In a meeting with Hans Jonas Fossum Moen, Associate Professor, section for Autonomous Systems and Sensor Technologies at the University of Oslo, we were advised that adjusting a model by use of tracking individual fish would be very difficult. This would require a whole set of experiments and modeling on its own, since the fish’s position needs to be estimated due to the 3 dimensions of freedom. Setting up this system for estimating positions, and running experiments to validate it would take more time than we have and would not be interesting to our end goal. Instead he advised that we just focus on modeling, which we can base on previous research, and where lots of information is already easily accessible. It is also probably easier to validate the system we arrive at with this approach, since we can test it directly on or with data from a fish farm. So, we changed the project to simply focus on modeling based on previous publications.
+    </p>
+    <p>
+    In email exchanges with Kai Olav Ellefsen, Associate Professor, Research Group for Robotics and Intelligent Systems, UiO, we laid out the idea given above, asking for feedback on how we could make our model as realistic as possible. To Ellefsen we presented the idea that a detection system which is the most sensitive to change in a model that is more complex (contains more noise, more random behavior etc.) might be the best system for the case that is less complex. This might be a good indication that this system would be the best in the real world as well, since the real world would contain many complicated behaviors that might seem random and act as noise to our system. Ellefsen proposed that we might be able to prove this mathematically, or show by successively noisy simulations that this system works the best. He thought we would be able to say a lot about the classifier from a model given that it exhibits similar characteristics to those present in real fish.
+    </p>
+    <p>
+    Lastly, we talked to Simen Halaand from Fredrikstad Seafoods. We sent him emails asking about the sensors, procedures and technologies they use at their fish farming facilities. Questions and responses can be seen below (translated to English from Norwegian).
+    </p>
+    
+    <table>
+      <tr>
+       <td>	Question
+    <p>
+            
+       </td>
+       <td>			Response
+    <p>
+            
+       </td>
+      </tr>
+      <tr>
+       <td>List of sensors (cameras and all measurement devices)
+    <p>
+                
+       </td>
+       <td>Mostly water quality parameters (O2, CO2, Temperature, Salinity, pH, redox, etc.)		
+    <p>
+            
+       </td>
+      </tr>
+      <tr>
+       <td>Sensor 	(cameras and all measurement devices) layout
+       </td>
+       <td>Measured in the fish tank and Recirculating aquaculture system(RAS)
+       </td>
+      </tr>
+      <tr>
+       <td>Tank design, layout, the best would be a cad model or picture of a model.
+    <p>
+            
+       </td>
+       <td>RAS2020 Kruger design.
+       </td>
+      </tr>
+      <tr>
+       <td>Disease recognition procedure (Gill score etc.)
+       </td>
+       <td>We use the handbook from Nofima/Vet.inst/CtrlAqua to score well being, including gill health
+       </td>
+      </tr>
+      <tr>
+       <td>Any information about an automatic system that detects disease. Do they have any automatic recognition of altered swimming patterns?
+       </td>
+       <td> Nothing like that in our facility.
+       </td>
+      </tr>
+    </table>
+    
+    
+    <p>
+    They unfortunately list no sensor for which we can use our approach. But it is very interesting that they use no automatic sensing techniques, leaving us with no competition in our project expect the cost of our proposed implementation.
+    </p>
+    <p>
+    <strong>Conclusion</strong>
+    </p>
+    <p>
+    The interactions with Fossum and Ellefsen defined the path for both our model and detection system. Leading us to base our model on published information. Which can be simplified extensively by representing behaviors that we are not interested in as noise. After having created an appropriate model we can test our detection system’s robustness by increasing the noise. Increasing the likelihood that it will work in the real world, with all the complex behaviors that fish exhibit. Making the interaction with these two experts fundamental to our project.
+    </p>
+    <p>
+    The interaction with Halaand further validated the value of our project and led us to be more considerate with the proposed implementation.
+    </p>

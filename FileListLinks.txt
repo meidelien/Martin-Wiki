@@ -18,7 +18,7 @@ https://2020.igem.org/File:T--UiOslo_Norway--Martin.jpg #Martin
 #### LOGO ####
 
 No project title
-https://2020.igem.org/wiki/images/3/3f/T--UiOslo_Norway--LOGO_NO_TITLE.png
+https://2020.igem.org/wiki/images/3/3f/T--UiOslo_Norway--LOGO_NO_TITLE.png   
 https://2020.igem.org/wiki/images/thumb/3/3f/T--UiOslo_Norway--LOGO_NO_TITLE.png/800px-T--UiOslo_Norway--LOGO_NO_TITLE.png
 https://2020.igem.org/wiki/images/thumb/3/3f/T--UiOslo_Norway--LOGO_NO_TITLE.png/320px-T--UiOslo_Norway--LOGO_NO_TITLE.png
 
@@ -83,6 +83,7 @@ https://2020.igem.org/wiki/images/8/82/T--UiOslo_Norway--4.2_Electrophoretic_mob
 
 DemonstrationVideo720_30fps.mp4
 https://2020.igem.org/wiki/images/1/17/T--UiOslo_Norway--DemoVideoTest.mp4 ###THIS ACTUALLY WORKS
+https://2020.igem.org/wiki/images/f/fd/T--UiOslo_Norway--DemonstrationVideo720_30fpsTEXT.mp4 ### THIS WORKS AND HAS TEXT
 https://2020.igem.org/wiki/images/8/8a/T--UiOslo_Norway--DemonstrationVideo720_30fps.mp4
 
 DataRender_1000_frames.mp4
