@@ -3,27 +3,88 @@
 {{Template:UiOslo_Norway/TopBar}}
 
 <html>
-
-
-
-<div class="column full_size judges-will-not-evaluate">
-<h3>★  ALERT! </h3>
-<p>This page is used by the judges to evaluate your team for the <a href="https://2020.igem.org/Judging/Medals">medal criterion</a> or <a href="https://2020.igem.org/Judging/Awards"> award listed below</a>. </p>
-<p> Delete this box in order to be evaluated for this medal criterion and/or award. See more information at <a href="https://2020.igem.org/Judging/Pages_for_Awards"> Instructions for Pages for awards</a>.</p>
-</div>
-
-
-<div class="clear"></div>
-
-
-<div class="column full_size">
-<h1>Proposed Implementation</h1>
-<h3>Silver Medal Criterion #4</h3>
-
-<p>Explain how you would implement your project in the real world.
-<br><br>
-Please see the <a href="https://2020.igem.org/Judging/Medals">2020 Medals Page</a> for more information. </p>
-</div>
+    <p>
+	 	 	 	
+    </p>
+    <p>
+    <h1>Proposed implementation </h1>
+    </p>
+    <p>
+                       
+    </p>
+    <p>
+    Our synthetic biology parts, once completely cloned and tested, would be applicable directly on fish farms and our modeling module is applicable in different interconnected areas. These parts of our project complement each other greatly when it comes to the implementation.
+    </p>
+    <p>
+    In our modeling module we created a software that can simulate and visualize schooling behavior of fish. We can also detect changes in schooling when fishes on an individual level change their behavior. With a simple neural net we have classified the school with simple measurements, more detail is found on the <a href="https://2020.igem.org/Team:UiOslo_Norway/Model"> modeling page</a>.
+    </p>
+    <p>
+    We have also laid out a plan for how can genetically modified <em>Escherichia coli</em> to produce salinomycin, a precursor of the anti-parasitic compound narasin. This is presented in the <a href="https://2020.igem.org/Team:UiOslo_Norway/Experiments">experiments page.</a></p>
+    <p>
+    <h2>Researchers and people with special interest in fish behavior </h2>	 	 	 	
+    </p>
+    <p>
+    Our modeling project can be used by researchers and people with special interest who want to investigate how individuals affect collective behavior. We have created a powerful visualization tool that they can use to investigate model performance. Currently in the modeling code, a schooling model is implemented. The user can easily change parameters for the model in a .txt file and investigate how the output changes. They can also extend the model to encompass other behaviors while still being able to use our visualization and classification parts.
+    </p>
+    <p>
+    <h2>Fish farms and people with interest in aquaculture</h2>
+    </p>
+    <p>
+                       
+    </p>
+    <p>
+    Our project is applicable directly on fish farms or with data from fish farms, assisting in detection and diagnosis of fish diseases. From our integrated human practices and internet searches we have found that fish farms generally do not have any automatic system for detection of disease which exploits behavior. Our approach has a low implementation cost and can potentially detect disease earlier than current technologies. We believe that this makes our system interesting for aquaculture companies to invest in this type of research.
+    </p>
+    <p>
+    If observing a fish school is the collective behavior of interest we can estimate some of the measures we used. Assuming some prior knowledge about fish school distribution one could use a set of cameras to estimate positions of visible fish. We can then use these positions as boundary points of a surface and then use our prior knowledge and this surface to estimate the center of mass. This measurement would have a lot of noise, but could contain more information than our current, more simple measurement.
+    </p>
+    <p>
+    At this stage, we have not had time to investigate details such as camera placement or number of them needed for our system to work optimally. But our modeling results indicate that with a measurement like this we should be able to detect changes caused by disease. There are many interesting metrics one could try to use in addition, such as looking at how the boundary of the fish school changes, but we have not been able to investigate these ourselves in any detail yet.
+    </p>
+    <p>
+    Our synthetic biology project complements this early detection methodology by producing a drug that can be introduced in the water or as food for the fish. The early detection means a lower amount of narasin is probably needed to treat the disease.
+    </p>
+    <p>
+    Using our software to test other types of metrics and to validate other detection systems is also an important part of its value. We believe that we have done a lot of leg work in this regard, allowing companies to start much further into the process of designing a behavior-based detection system.
+    </p>
+    <p>
+    <h2>Future extensions </h2>
+    </p>
+    <p>
+                       
+    </p>
+    <p>
+    Our model might not fully represent the specific behaviors of interest in different projects. In that case the best option would be to extend the software and introduce desired behaviors. There might be research required to model this specific behavior and how it affects the collective behaviors of interest. Furthermore, during the extension of the model our software can show how fish moves in 3 dimensions allowing for human verification. An expert can then observe in great detail how the model is working, a graphic of this is seen below. When this step is done we still propose to use cameras as the main sensors, because those are the only sensors that are already widely used in aquaculture with which we can use our approach. This makes it less likely that there will be a big implementation cost, since the classification software can just run on a computer on site or a server that the video data is sent to.
+    </p>
+    <p>
+                       
+    </p>
+    <h2>
+    Expert evaluation of experimental model
+    </h2>
+    
+    <p>
+    
+    <img src="https://2020.igem.org/wiki/images/thumb/0/02/T--UiOslo_Norway--expertValidation.png/698px-T--UiOslo_Norway--expertValidation.png" width="" alt="alt_text" title="image_tooltip">
+    
+    </p>
+    <p>
+                       
+    </p>
+    <p>
+    There is a high value in detecting a change in behavior that might be important, and this can for example function as an alarm to contact a veterinarian. But we believe that a better classification system would also be able to give more information that is important to the fish farmers. For this purpose we propose a multi-agent classification system as presented in [1]. With simulations we could insert specific symptoms into our model, then train different classifiers such as neural nets to identify these symptoms on real-world data. The neural nets would then give a value to each of the symptoms which can be presented to the fish farmers (leading to an alert, special diagnostics procedures, and eventually, treatment), or it could be the input to another classifier that tries to automatically diagnose the disease based on the inputs. All of these classifiers can be trained with simulations if the model represents reality adequately.
+    </p>
+    <p>
+    Assuming that our knowledge about the exact application environment and behaviors is detailed enough, we believe it to be feasible to generate training data before implementing the system. Allowing for a functioning system much faster.
+    </p>
+    <p>
+    In general the observation of collective behavior to detect disease might be interesting also when it comes to other animals. One could imagine a human crowd where someone is sneezing, this might cause a lower density around the sneezing individual. Potentially allowing an estimate of how many have a cold without being able to hear the sneezes. But the application on humans might lead to ethical challenges. It is possible to design a system like this where the output says how many people are sick, while it is impossible to figure out who was sick or where. But then this application losses the ability of aiding in for example contact tracing directly, which we have seen be so important this year.
+    </p>
+    <p><strong> Bibliography</strong>
+    </p>
+    <p>
+    [1]: Mohammed, M. A., & Dhannoon, B. N. (2016). Multi agent system for classification task. International Journal of Computer (IJC), 23(1), 91–99. Retrieved from https://www.researchgate.net/publication/313159692_Multi_agent_system_for_classification_task
+    </p>
 
 
 </html>

@@ -4,30 +4,139 @@
 
 <html>
 
-
-<div class="column full_size judges-will-not-evaluate">
-<h3>★  ALERT! </h3>
-<p>This page is used by the judges to evaluate your team for the <a href="https://2020.igem.org/Judging/Medals">medal criterion</a> or <a href="https://2020.igem.org/Judging/Awards"> award listed below</a>. </p>
-<p> Delete this box in order to be evaluated for this medal criterion and/or award. See more information at <a href="https://2020.igem.org/Judging/Pages_for_Awards"> Instructions for Pages for awards</a>.</p>
-</div>
-
-
-<div class="clear"></div>
-
-
-<div class="column full_size">
-<h1>Engineering Success</h1>
-<h3> Silver Medal Criterion #1</h3>
-
-<p> Demonstrate engineering success in at least one aspect of your project. This achievement should be distinct from your Contribution for Bronze. 
-<br><br>
-Please see the <a href="https://2020.igem.org/Judging/Medals">2020 Medals Page</a> for more information. 
-</p>
-
-
-<p>If you plan to show engineering success by creating a new Part that has been shown to work as expected, you must document your contribution on the Part's Main Page on the <a href="http://parts.igem.org/Main_Page">Registry</a> for your team to be eligible for this criteria.</p>
-
-</div>
+ 
+    <H1>
+    Engineering success
+    </H1>
+    <p>
+    <h2>Project direction</h2>
+    </p>
+    <p>
+    Having decided that we wanted to look at fish disease and early detection, we found that behavioral changes could be an early warning sign of disease [5], appearing well before clinical symptoms. Different diseases in fish cause behavioral changes. A good summary is found in [6]. For some diseases, changes in behavior is the first symptom of disease [7]. After some deliberation we had the idea to look at fish collective behavior in order to detect disease. We wanted to investigate this idea due to the following points:
+    </p>
+    <p>
+    1. Collective behavior might amplify individual behavioral changes.
+    </p>
+    <p>
+    2. The collective measure might be easier to obtain than individual measures.
+    </p>
+    <p>
+    3. Individual behavior might be more easily detectable through how it affects collective behavior.
+    </p>
+    <p>
+    4. This is a unique approach; we have not found something similar documented in literature when it comes to fish diseases.
+    </p>
+    <p>
+    <h2>Why model</h2>	 	 	 	
+    </p>
+    <p>
+    Our idea was to create a system that detects changes in collective behavior, with the end goal to diagnose disease. During the design phase of this system, it is beneficial to have a computer model with which we can run simulations, rather than starting with very complex real-world data. This would allow us to explore different ideas on the implementation side, such as different sensors and classification schemes. Modeling the behavior of interest and the environment would allow us to test different sensor configurations and metrics to possibly find a close-to-optimal system. The best solution for our classification scheme would probably be to use a machine learning approach, for which our model could generate practically endless data. Firstly; we could implement this design and then start gathering real-life behavior data to train our classifiers. Here a classifier is an algorithm who assigns data to a class or category, this is elaborated on in the modeling section.
+    </p>
+    <p>
+    Below is a graph showing the complete computerized system as we envisioned it. However, we did not have time to create the environment model.
+    </p>
+    <p>
+    
+    <center><img src="https://2020.igem.org/wiki/images/thumb/4/47/T--UiOslo_Norway--modelI-ModelIlustration.png/641px-T--UiOslo_Norway--modelI-ModelIlustration.png" width="" alt="Model illustration" title="Model illustration"></center>
+    
+    </p>
+    <p>
+                       
+    </p>
+    <p>
+    Secondly; based on our approach we could to tailor the model to the specific site at which we want to use our detection system (i.e. a fish farm).This could give us a more detailed and reliable model with which we could run simulations generating data, independent of real-life, noisy data. The data could then be used directly to train our classifiers. While this process has its own challenges, it might allow the system to start functioning straight away. The amount of data needed to verify such a system would be much less than what are needed to train it. One could then create many different classifiers (elaborated on in the modeling section) off site and see which ones work the best. If the classifiers are completely untrained when the system is implemented, it might take a very long time before detection becomes reliable.
+    </p>
+    <p>
+                       
+    </p>
+    <p>
+    A third way we could use the model is to simply study how individuals affect collective behavior. This step is of course important in the design of the entire system, but also has relevance to basic science.
+    </p>
+    <p>
+    <h2>Model requirements</h2> 	 	 	
+    </p>
+    <p>
+    Many different modeling approaches to fish behavior exist in literature. For example continuum models, that is models who look at all the fish as if they are one continuous entity or surface over time, are very popular [8][9]. To be able to detect changes individuals cause during a short time frame, one needs to model the individuals themselves. Luckily these individually based models are also popular [10,11]. Most mathematical investigations of fish behavior describe the fish with individual positions, velocities and forces. For the fishes themselves, our most important requirement is that each individual has a position in space which we can measure at each time step.
+    </p>
+    <p>
+    <h2>Different approaches</h2>
+    </p>
+    <p>
+                       
+    </p>
+    <p>
+    While researching fish behavior we found that they exhibit much more complex behaviors than we originally thought. As summarized in [1] they have personal traits like degree of boldness, interest in exploration, social behavior, and much more. In [2] we see that fish also have confidence affected by their life history, becoming less likely to win a fight if a fight has been lost before. It became apparent that it would be very hard to create a model which takes all of these behaviors into account.
+    </p>
+    <p>
+    A possible approach would be to ‘evolve’ the fishes ourselves, setting up a model that accurately enough corresponds to the real world. A small example here would be to have fishes that want to minimize energy use and therefore would develop schooling since the inter-fish hydrodynamic effects reduce drag [3]. This model would not only need to represent the physical environment but also the fish physiology for it to be able to approximate real fish adequately. Such a model would be extremely hard, if not impossible, to make and in the end it would be difficult to know if the evolved fish did not simply evolve other behaviors with the same constraints.
+    </p>
+    <p>
+    We then decided to try to model specific behaviors as described in literature. One of the first behaviors we looked at, was aggression due to the fact that change in aggressive behavior is a symptom of some diseases [6]. Zebrafish is one of the best studied model organisms when it comes to fish behavior. Based on [4] we tried to make a model of fish fighting, hoping to be able to detect when the frequency of fights or fight characteristics changed. Trying to build this model we very quickly approached 40 different parameters, with no real way of defining most of them scientifically. A way to deal with these parameter values could be to find some reasonable ranges and investigate the Cartesian product of all the parameters, and then try to identify a system for detection that works well on many of these parameter values. One could combine this model with a model of a fish school and investigate how increased aggression might affect the school. While the approach might be useful, unfortunately due to time constrains this very complex model became unfeasible for our team.
+    </p>
+    <p>
+    After reading more about modeling of collective behavior in fish we found that schooling is the most common [11][12][13]. And we decided to create our own version of the most common model of this phenomenon as seen in [11]. Extending it to 3 dimensions, this model has a number of interesting parameters, including how much a fish “values” their own direction, allowing us to represent less reactive fish. We can also introduce fish that are antisocial by increasing their repulsion radius and many other changes on an individual level. For a deeper explanation of the model see the model page (link).
+    </p>
+    <p>
+    <h2g>Classification and success</h2>	 	 	 	
+    </p>
+    <p>
+    Having arrived at a suitable model for collective behavior in fish we started to investigate how to detect changes. There is an endless number of different measures to choose from, but they all rely on fish position. The simplest measure would be just a scalar term, so one of the measures we tried was the absolute sum of the positional components of all the fishes. From our simulation we then produced a time series of this simple measure. To attempt classification we chose a simple route, using a neural net where the number of inputs corresponds to the length of the time series. After normalizing our time series we can detect the difference between normal and less reactive fish schools. This is considered a big success for us, since this simple classifier can achieve a high accuracy while for a human it would be very hard to see the difference. For further information on these results see our model page.
+    </p>
+    <p>
+    We also succeeded in creating a good visualization tool, which allows the user to see how all the fish behave in 3 dimensions. Initially we could only create a video of scatter plots which are not very informative in 3 dimensions. Our Blender implementation now allows for full 3D view, where the user can move around while the simulation is running to investigate all parts of interest. This allows for easy verification of model performance and makes extensions of the model much safer to implement. This greatly increases the value for users who are interested in representing results, investigating behaviors and designing detection systems.
+    </p>
+    <p>
+    Structure of the software pieces that we have created
+    </p>
+    <p>
+    
+    
+    <center><img src="https://2020.igem.org/wiki/images/thumb/3/35/T--UiOslo_Norway--softwareOverview.png/533px-T--UiOslo_Norway--softwareOverview.png" width="" alt="Software overview" title="Software overview"></center>
+    </p>
+    <p>
+    Bibliography
+    </p>
+    <strong>	 	 	 	</strong>
+    </p>
+    <p>
+    [1] Mittelbach, Gary G, Ballew, Nicholas G, & Kjelvik, Melissa K. (2014). Fish behavioral types and their ecological consequences. Canadian Journal of Fisheries and Aquatic Sciences, 71(6), 927–944. https://doi.org/10.1139/cjfas-2013-0558
+    </p>
+    <p>
+    [2] Brown, Culum, Laland, Kevin, & Krause, Jens. (2011). Fish Cognition and Behavior (Vol. 15, Fish and aquatic resources series). Hoboken: John Wiley & Sons, Incorporated.
+    </p>
+    <p>
+    [3] Filella, Audrey, Nadal, François, Sire, Clément, Kanso, Eva, & Eloy, Christophe. (2018). Model of Collective Fish Behavior with Hydrodynamic Interactions. Physical Review Letters, 120(19), 198101–198101. https://doi.org/10.1103/PhysRevLett.120.198101
+    </p>
+    <p>
+    [4] Oliveira, Rui F, Silva, Joana F, & Simões, José M. (2011). Fighting Zebrafish: Characterization of Aggressive Behavior and Winner–Loser Effects. Zebrafish, 8(2), 73–81. https://doi.org/10.1089/zeb.2011.0690
+    </p>
+    <p>
+    [5] Belaid, Mohammed Anouar, Rodriguez-Prado, Maria, Chevaux, Eric, & Calsamiglia, Sergio. (2019). The Use of an Activity Monitoring System for the Early Detection of Health Disorders in Young Bulls. Animals (Basel), 9(11), 924. https://doi.org/10.3390/ani9110924
+    </p>
+    <p>
+    [6] Kane, AS, Salierno, JD, and Brewer, SK. 2005. Fish models in behavioral toxicology: Automatedtechniques, updates and perspectives. Pages 559-590 In: Ostrander, GK, editor. Methods in AquaticToxicology (Chapter 32), Volume 2. Lewis Publishers, Boca Raton, FL.
+    </p>
+    <p>
+    [7] Mitchell, M. A. (2011). Edward J. Noga Fish Disease: Diagnosis and Treatment, Second Edition 2010 Wiley Blackwell 519 pages [Review of Edward J. Noga Fish Disease: Diagnosis and Treatment, Second Edition 2010 Wiley Blackwell 519 pages]. 20(3), 246–247. Elsevier Inc. https://doi.org/10.1053/j.jepm.2011.04.012
+    </p>
+    <p>
+    [8] Reed, M. (1983). A multidimensional continuum model of fish behavior. Ecological Modelling, 20(4), 311–322. https://doi.org/10.1016/0304-3800(83)90039-X
+    </p>
+    <p>
+    [9] Reed, Mark, & Balchen, Jens G. (1982). A Multidimensional Continuum Model of Fish Population Dynamics and Behaviour: Application to the Barents Sea Capelin (Mallotus Villosus). Modeling, Identification and Control, 3(2), 65–109. https://doi.org/10.4173/mic.1982.2.1
+    </p>
+    <p>
+    [10] Takagi, Tsutomu, Moritomi, Yutaka, Iwata, Jyun, Nakamine, Hiroshi, & Sannomiya, Nobuo. (2004). Mathematical model of fish schooling behaviour in a set-net. ICES Journal of Marine Science, 61(7), 1214–1223. https://doi.org/10.1016/j.icesjms.2004.07.009
+    </p>
+    <p>
+    [11] Alethea Barbaro , Bjorn Birnir, Kirk Taylor, (2006) “Simulating The Collective Behavior of Schooling FishvWith A Discrete Stochastic Model” funded byThe National Science Foundation,The Research Fund of The University of Iceland, https://www.mrl.ucsb.edu/sites/default/files/mrl_docs/ret_attachments/research/KTaylor.pdf
+    </p>
+    <p>
+    [12] Uchitane, T., Ton, T. V., & Yagi, A. (2015). An Ordinary Differential Equation Model for Fish Schooling. arXiv, 1508.05597. Retrieved from https://arxiv.org/abs/1508.05597v2
+    </p>
+    <p>
+    [13] Hemelrijk, Charlotte K, & Hildenbrandt, Hanno. (2008). Self‐Organized Shape and Frontal Density of Fish Schools. Ethology, 114(3), 245–254. https://doi.org/10.1111/j.1439-0310.2007.01459.x
+    </p>
 
 
 </html>
