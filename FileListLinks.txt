@@ -6,6 +6,11 @@ To edit/update an previously uploaded file, use:
 
 https://2020.igem.org/File:T--UiOslo_Norway--ModelMath.png
 
+List of all pages under the created team:
+
+https://2020.igem.org/wiki/index.php?title=Special%3APrefixIndex&prefix=Team%3AUiOslo_Norway&namespace=0
+
+
 
 ##########
 # IMAGES #
