@@ -3,605 +3,712 @@
 {{Template:UiOslo_Norway/TopBar}}
 
 <html>
-    
-    <h1>Project modeling </h1>
-    
-    <h2>Our model is on the  <a href="https://github.com/igemsoftware2020/UiOslo-Norway">iGEM 2020 Software Github!</a>  </h2>
-    
-    <p>
-    In our project a model of fish schools has been central, the path that led us here is elaborated on in the <a href="http://2020.igem.org/Team:UiOslo_Norway/Engineering"> Engineering page </a> and <a href="http://2020.igem.org/Team:UiOslo_Norway/Integrated_Human_Practices">Integrated Human Practices page </a>. Here we discuss the model we have implemented, the results and how we obtained them. For our project we are using a discrete stochastic model which is based on individuals. Our model is an extension of an existing model [1] which it self is based on [2]. There also exists a continuous version of this model [3]. [1] presents a model for two dimensions, our model follows the same principles but can be used in 3 dimensions. There is of course a big concern caused by this transition, as 3 dimensions introduce more degrees of freedom. But the exact parameters in this model are not “scientific”, rather they are tuned such that the model exhibits behaviors seen in fish schools, for example fish migrating in the same direction. The initial values are random, causing the steady state to vary greatly. As an example, the model can have a varying number of schools.</p>
-    <p>
-    <h2>Description of model </h2>
-    </p>
 
-    <center><img src="https://2020.igem.org/wiki/images/d/dd/T--UiOslo_Norway--DescriptionDiscreteStochasticSchoolingModel.png" width = "1000" height = "2800" ></center>
-    <p>
-                       
-    </p>
-    <p>
-    Our model simulates a fish school. This model is very interesting for our purposes because of its tunable parameters. Each fish has a radius of attraction, repulsion and orientation, with associated weights. With these parameters we can approximately represent the symptoms of many different diseases, such as lethargy represented with less reactive fish by increasing the self weight parameter. As seen in the model description this parameter is the weight of a fish’s own direction. Avoidance behavior can be simulated by increasing the repulsion radius, erratic swimming can be introduced by increasing randomness. These are only approximations of symptoms, but they might give a good indication of what is the best way to detect these symptoms, and of the degree of illness that is required for detection, or how many fish need to be sick.
-    </p>
-    <p>
-    In our simulations we have made an effort to use measurements that are simple, so that they hopefully contain less information. If our system needs little information to detect differences, then it's a good indication that this might be the case in the real world. All parameters that are kept constant are found on the bottom.
-    </p>
-    <p>
-    <h2>Existing extensions </h2>
-    </p>
-    <p>
-    Some authors have extended such a model in literature, trying to make it more accurate. [4] is a good example of this, introducing models of perception, maximum turning angles, variable speed, etc. We unfortunately have not had time to implement these extended versions, but hopefully they could be implemented in the future and extended upon even further.
-    </p>
-    <p>
-    <h2>Detection system</h2>
-    </p>
-    <p>
-    The structure of what we call a detection system is seen in the graphic below.
-    </p>
-    <p>
-    
-    
-        <center><img src="https://2020.igem.org/wiki/images/thumb/f/f0/T--UiOslo_Norway--detectionsystemgraphic.png/350px-T--UiOslo_Norway--detectionsystemgraphic.png" width="" alt="Detection system" title="Detection system"></center>
-    
-    </p>
-    <p>
-                       
-    </p>
-    <p>
-    Here the sensors could be cameras, and feature extraction could be an estimate of school velocity over time. The classifier would then get a vector of these estimates, coined a feature vector. Given a set of classes, for example “sick” and “healthy” fish, the classifier would try to classify the feature vector as belonging to the sick or healthy classes.
-    </p>
-    <p>
-    A classifier is an algorithm that implements classification, that is it takes in some data and assigns it a category or class. The basic principle in statistical classification is seen below.
-    </p>
-    <p>
-    
-    <center><img src="https://2020.igem.org/wiki/images/1/1a/T--UiOslo_Norway--classifierfeatures.png" width="" alt="classifier features" title="classifier features "></center>
-                   
-    </p>
-    <p>
-    Here x_1 and x_2 are features, and the space their Cartesian product spans out is refereed to as feature space. Each point here is a feature vector, where blue and green belong to two different classes. The goal of a classifier is to find a decision boundary, here the red line. This allows us to classify new data by knowing on which side of the line it falls in feature space. In our case, these features would have 50 dimensions, making a graphical representation quite impossible.
-    </p>
-    <p>
-    The same principle is also used by the classifier we implemented, a neural net. With machine learning we do classification by what is called supervised learning, where we beforehand have a set of data with an assigned class for training. When we input some of this data, consisting of feature vectors, the classifier (for example a neural net) will give some output. Since we know the class in the training set, we have a preferred output, say 0 for blue and 1 for green. Some smart people have figured out that if you define a loss  function as (target-targetOutput)<sup>2  </sup>one can define functions called optimizers which attempt to minimize this loss. The smart thing here is that the human does not need to know exactly how the classifier tells these two apart, while insight into the data is important one can almost apply this concept blind-foldedly. In our case we can easily create training data, and train a classifier without knowing how it tells the classes apart.
-    </p>
-    <p>
-                       
-    </p>
-    <p>
-    Our detection system consists of a simple neural net where the number of inputs is the number of measurements per simulation. The structure of this neural net was found by trying different configurations on our own. All the data is normalized to the interval [0,1] with min-max feature scaling. Our measurement is defined as
-    </p>
-    <p>
-    
-    
-   
+<h1>Project modeling </h1>
 
-    <center><img src="https://2020.igem.org/wiki/images/c/cf/T--UiOslo_Norway--image3.png"></center>
-  
-    
-    </p>
-    <p>
-                       
-    </p>
-    <p>
-    Containing relatively little information, this measurement is just a scalar additive of all the positional components of all N fish. All positional components are used as absolute numbers, placing them only in the positive side of their axis. Our neural net uses the normal sigmoid activation function, mean square error loss function and the ADAM optimizer. The ADAM optimizer has done well in literature, and outperformed the classic gradient descent in our case. More information on ADAM can be found here [5], we used the parameters that the authors advised on page 2 of their article.
-    </p>
-    <p>
-    
-    
-<center><img src="https://2020.igem.org/wiki/images/0/01/T--UiOslo_Norway--neuralnet.png" width="" alt="Neuralnet" title="Neuralnet"></center>
-  
-    
-    </p>
-    <p>
-                       
-    </p>
-    <p>
-    Each node calculates an activation function while the arrows represent weights. For the final output we simply classify on the intervals (-infinity, 0.5] and (0.5, infinity).
-    </p>
-    <p>
-    During the simulation, we take 50 measurements which are fed straight to the neural net after normalization, so our input layer has 50 nodes.
-    </p>
-    <p>
-    Neural net architecture
-    </p>
-    
-    <table>
-      <tr>
-       <td>Layer
-       </td>
-       <td>Input layer
-       </td>
-       <td>Hidden 1
-       </td>
-       <td>Hidden 2
-       </td>
-       <td>Hidden 3
-       </td>
-       <td>Hidden 4
-       </td>
-       <td>Hidden 5
-       </td>
-       <td>Output layer
-       </td>
-      </tr>
-      <tr>
-       <td>Number of nodes
-       </td>
-       <td>50
-       </td>
-       <td>40
-       </td>
-       <td>30
-       </td>
-       <td>15
-       </td>
-       <td>10 
-       </td>
-       <td>5
-       </td>
-       <td>1
-       </td>
-      </tr>
-    </table>
-    
-    
-    <p>
-    Our classifier is trained on 1600 samples, requiring 1600 simulations, 800 “sick” and 800 “healthy”. The number of training iterations over these samples is set to 1000. The number of test samples is 10 % of the 1600 samples, meaning we had 160 test samples. The set of feature vectors is shuffled before being divided into training and test sets.
-    </p>
-    <p>
-    <strong>Results</strong>
-    </p>
-    <p>
-    The most natural part of our simulations to classify is the steady state, at this point the fish are actually schooling. But there is another phase, the transient one that turns out to also be very interesting. There is a big difference between the ease of classification when it comes to these two phases of the simulation. In the start of a simulation there is no order, the system of fishes then undergo a phase transition to an ordered school system. After this phase transition the fish are organized, for example they could be migrating in a common direction. It turns out that it is much easier to classify the fish if one has the additional information contained in this phase transition.
-    </p>
-    <p>
-    Steady state:
-    </p>
-    <p>
-    The part of the simulation which was steady state was determined visually and was found to be between 30-100% of the simulation, meaning we take our measurements between the 600<sup>th</sup> and 2000<sup>th</sup> iteration. We then take 50 samples of our measurement evenly distributed throughout this part of the simulation.
-    </p>
-    <p>
-    Parameters for “healthy” fish
-    </p>
-    
-    <table>
-      <tr>
-       <td>Parameter
-       </td>
-       <td>value
-       </td>
-      </tr>
-      <tr>
-       <td>Radius of attraction
-       </td>
-       <td>150
-       </td>
-      </tr>
-      <tr>
-       <td>Radius of orientation
-       </td>
-       <td>55
-       </td>
-      </tr>
-      <tr>
-       <td>Radius of repulsion
-       </td>
-       <td>14
-       </td>
-      </tr>
-      <tr>
-       <td>Attraction weight
-       </td>
-       <td>1.4
-       </td>
-      </tr>
-      <tr>
-       <td>Repulsion weight
-       </td>
-       <td>0.7
-       </td>
-      </tr>
-      <tr>
-       <td>Self weight 
-       </td>
-       <td>1
-       </td>
-      </tr>
-      <tr>
-       <td>Orientation weight 
-       </td>
-       <td>2
-       </td>
-      </tr>
-    </table>
-    
-    
-    <p>
-    In our model these parameters give a migratory solution, in other words the steady state is that most or all fish move together in a defined direction. These “healthy” fish are used as our baseline and we want to see if we can tell them apart from other fish whose parameters we have changed, coined “sick” fish.
-    </p>
-    <p>
-    Parameters for “sick” fish during steady state classification
-    </p>
-    
-    <table>
-      <tr>
-       <td>Parameter
-       </td>
-       <td>value
-       </td>
-      </tr>
-      <tr>
-       <td>Radius of attraction
-       </td>
-       <td>150
-       </td>
-      </tr>
-      <tr>
-       <td>Radius of orientation
-       </td>
-       <td>45
-       </td>
-      </tr>
-      <tr>
-       <td>Radius of repulsion
-       </td>
-       <td>10
-       </td>
-      </tr>
-      <tr>
-       <td>Attraction weight
-       </td>
-       <td>0.7
-       </td>
-      </tr>
-      <tr>
-       <td>Repulsion weight
-       </td>
-       <td>0.35
-       </td>
-      </tr>
-      <tr>
-       <td>Self weight 
-       </td>
-       <td>3
-       </td>
-      </tr>
-      <tr>
-       <td>Orientation weight 
-       </td>
-       <td>1.5
-       </td>
-      </tr>
-    </table>
-    
-    
-    <p>
-    The sick fish in this simulation are less reactive and have a lower affinity to orient with others and move towards others. While the choices of parameters might seem a bit arbitrary the important thing here is that the change in parameters does not change the type of steady state that we end up in. So the system with these parameters has a migratory solution. For us to say that we are comparing them this is most important part. Some solutions might be circular or still, comparing them to each other and saying one detects the difference has no value. To clarify, if the parameters changes in such a way that the steady state becomes stationary or circular then these are just two legitimate solutions to the system. So telling them apart does not mean schooling performance has changed.
-    </p>
-    <p>
-    Our classification results are evaluated with the terms accuracy, precision and recall.	 Accuracy is defined as 
-    
-   
-    
-    <img src="https://2020.igem.org/wiki/images/5/58/T--UiOslo_Norway--accuracy.png" width="" alt="Accuracy" title="Accuracy">
-     where TP is true positive, TN is true negative, FP is false positive and FN is false negative. True refers to a correct classification and false refers to a wrong classification.
-    </p>
-    <p>
-    Precision is defined as 
-    
-    <img src="https://2020.igem.org/wiki/images/5/56/T--UiOslo_Norway--Precision.png" width="" alt="precision" title="precision>
+<h2>Our model is on the <a href="https://github.com/igemsoftware2020/UiOslo-Norway">iGEM 2020 Software Github!</a> 
+</h2>
+
+<p>
+   In our project a model of fish schools has been central, the path that led us here is elaborated on in the <a
+      href="http://2020.igem.org/Team:UiOslo_Norway/Engineering"> Engineering page </a> and <a
+      href="http://2020.igem.org/Team:UiOslo_Norway/Integrated_Human_Practices">Integrated Human Practices page </a>.
+   Here we discuss the model we have implemented, the results and how we obtained them. For our project we are using a
+   discrete stochastic model which is based on individuals. Our model is an extension of an existing model [1] which it
+   self is based on [2]. There also exists a continuous version of this model [3]. [1] presents a model for two
+   dimensions, our model follows the same principles but can be used in 3 dimensions. There is of course a big concern
+   caused by this transition, as 3 dimensions introduce more degrees of freedom. But the exact parameters in this model
+   are not “scientific”, rather they are tuned such that the model exhibits behaviors seen in fish schools, for example
+   fish migrating in the same direction. The initial values are random, causing the steady state to vary greatly. As an
+   example, the model can have a varying number of schools.</p>
+<p>
+<h2>Description of model </h2>
+</p>
+
+<center><img
+      src="https://2020.igem.org/wiki/images/d/dd/T--UiOslo_Norway--DescriptionDiscreteStochasticSchoolingModel.png"
+      width="1000" height="2800"></center>
+<p>
+
+</p>
+<p>
+   Our model simulates a fish school. This model is very interesting for our purposes because of its tunable parameters.
+   Each fish has a radius of attraction, repulsion and orientation, with associated weights. With these parameters we
+   can approximately represent the symptoms of many different diseases, such as lethargy represented with less reactive
+   fish by increasing the self weight parameter. As seen in the model description this parameter is the weight of a
+   fish’s own direction. Avoidance behavior can be simulated by increasing the repulsion radius, erratic swimming can be
+   introduced by increasing randomness. These are only approximations of symptoms, but they might give a good indication
+   of what is the best way to detect these symptoms, and of the degree of illness that is required for detection, or how
+   many fish need to be sick.
+</p>
+<p>
+   In our simulations we have made an effort to use measurements that are simple, so that they hopefully contain less
+   information. If our system needs little information to detect differences, then it's a good indication that this
+   might be the case in the real world. All parameters that are kept constant are found on the bottom.
+</p>
+<p>
+<h2>Existing extensions </h2>
+</p>
+<p>
+   Some authors have extended such a model in literature, trying to make it more accurate. [4] is a good example of
+   this, introducing models of perception, maximum turning angles, variable speed, etc. We unfortunately have not had
+   time to implement these extended versions, but hopefully they could be implemented in the future and extended upon
+   even further.
+</p>
+<p>
+<h2>Detection system</h2>
+</p>
+<p>
+   The structure of what we call a detection system is seen in the graphic below.
+</p>
+<p>
+
+
+   <center><img
+         src="https://2020.igem.org/wiki/images/thumb/f/f0/T--UiOslo_Norway--detectionsystemgraphic.png/350px-T--UiOslo_Norway--detectionsystemgraphic.png"
+         width="" alt="Detection system" title="Detection system"></center>
+
+</p>
+<p>
+
+</p>
+<p>
+   Here the sensors could be cameras, and feature extraction could be an estimate of school velocity over time. The
+   classifier would then get a vector of these estimates, coined a feature vector. Given a set of classes, for example
+   “sick” and “healthy” fish, the classifier would try to classify the feature vector as belonging to the sick or
+   healthy classes.
+</p>
+<p>
+   A classifier is an algorithm that implements classification, that is it takes in some data and assigns it a category
+   or class. The basic principle in statistical classification is seen below.
+</p>
+<p>
+
+   <center><img src="https://2020.igem.org/wiki/images/1/1a/T--UiOslo_Norway--classifierfeatures.png" width=""
+         alt="classifier features" title="classifier features "></center>
+
+</p>
+<p>
+   Here x_1 and x_2 are features, and the space their Cartesian product spans out is refereed to as feature space. Each
+   point here is a feature vector, where blue and green belong to two different classes. The goal of a classifier is to
+   find a decision boundary, here the red line. This allows us to classify new data by knowing on which side of the line
+   it falls in feature space. In our case, these features would have 50 dimensions, making a graphical representation
+   quite impossible.
+</p>
+<p>
+   The same principle is also used by the classifier we implemented, a neural net. With machine learning we do
+   classification by what is called supervised learning, where we beforehand have a set of data with an assigned class
+   for training. When we input some of this data, consisting of feature vectors, the classifier (for example a neural
+   net) will give some output. Since we know the class in the training set, we have a preferred output, say 0 for blue
+   and 1 for green. Some smart people have figured out that if you define a loss function as (target-targetOutput)<sup>2
+   </sup>one can define functions called optimizers which attempt to minimize this loss. The smart thing here is that
+   the human does not need to know exactly how the classifier tells these two apart, while insight into the data is
+   important one can almost apply this concept blind-foldedly. In our case we can easily create training data, and train
+   a classifier without knowing how it tells the classes apart.
+</p>
+<p>
+
+</p>
+<p>
+   Our detection system consists of a simple neural net where the number of inputs is the number of measurements per
+   simulation. The structure of this neural net was found by trying different configurations on our own. All the data is
+   normalized to the interval [0,1] with min-max feature scaling. Our measurement is defined as
+</p>
+<p>
+
+
+
+
+   <center><img src="https://2020.igem.org/wiki/images/c/cf/T--UiOslo_Norway--image3.png"></center>
+
+
+</p>
+<p>
+
+</p>
+<p>
+   Containing relatively little information, this measurement is just a scalar additive of all the positional components
+   of all N fish. All positional components are used as absolute numbers, placing them only in the positive side of
+   their axis. Our neural net uses the normal sigmoid activation function, mean square error loss function and the ADAM
+   optimizer. The ADAM optimizer has done well in literature, and outperformed the classic gradient descent in our case.
+   More information on ADAM can be found here [5], we used the parameters that the authors advised on page 2 of their
+   article.
+</p>
+<p>
+
+
+   <center><img src="https://2020.igem.org/wiki/images/0/01/T--UiOslo_Norway--neuralnet.png" width="" alt="Neuralnet"
+         title="Neuralnet"></center>
+
+
+</p>
+<p>
+
+</p>
+<p>
+   Each node calculates an activation function while the arrows represent weights. For the final output we simply
+   classify on the intervals (-infinity, 0.5] and (0.5, infinity).
+</p>
+<p>
+   During the simulation, we take 50 measurements which are fed straight to the neural net after normalization, so our
+   input layer has 50 nodes.
+</p>
+<p>
+   Neural net architecture
+</p>
+
+<table>
+   <tr>
+      <td>Layer
+      </td>
+      <td>Input layer
+      </td>
+      <td>Hidden 1
+      </td>
+      <td>Hidden 2
+      </td>
+      <td>Hidden 3
+      </td>
+      <td>Hidden 4
+      </td>
+      <td>Hidden 5
+      </td>
+      <td>Output layer
+      </td>
+   </tr>
+   <tr>
+      <td>Number of nodes
+      </td>
+      <td>50
+      </td>
+      <td>40
+      </td>
+      <td>30
+      </td>
+      <td>15
+      </td>
+      <td>10
+      </td>
+      <td>5
+      </td>
+      <td>1
+      </td>
+   </tr>
+</table>
+
+
+<p>
+   Our classifier is trained on 1600 samples, requiring 1600 simulations, 800 “sick” and 800 “healthy”. The number of
+   training iterations over these samples is set to 1000. The number of test samples is 10 % of the 1600 samples,
+   meaning we had 160 test samples. The set of feature vectors is shuffled before being divided into training and test
+   sets.
+</p>
+<p>
+   <strong>Results</strong>
+</p>
+<p>
+   The most natural part of our simulations to classify is the steady state, at this point the fish are actually
+   schooling. But there is another phase, the transient one that turns out to also be very interesting. There is a big
+   difference between the ease of classification when it comes to these two phases of the simulation. In the start of a
+   simulation there is no order, the system of fishes then undergo a phase transition to an ordered school system. After
+   this phase transition the fish are organized, for example they could be migrating in a common direction. It turns out
+   that it is much easier to classify the fish if one has the additional information contained in this phase transition.
+</p>
+<p>
+   Steady state:
+</p>
+<p>
+   The part of the simulation which was steady state was determined visually and was found to be between 30-100% of the
+   simulation, meaning we take our measurements between the 600<sup>th</sup> and 2000<sup>th</sup> iteration. We then
+   take 50 samples of our measurement evenly distributed throughout this part of the simulation.
+</p>
+<p>
+   Parameters for “healthy” fish
+</p>
+
+<table>
+   <tr>
+      <td>Parameter
+      </td>
+      <td>value
+      </td>
+   </tr>
+   <tr>
+      <td>Radius of attraction
+      </td>
+      <td>150
+      </td>
+   </tr>
+   <tr>
+      <td>Radius of orientation
+      </td>
+      <td>55
+      </td>
+   </tr>
+   <tr>
+      <td>Radius of repulsion
+      </td>
+      <td>14
+      </td>
+   </tr>
+   <tr>
+      <td>Attraction weight
+      </td>
+      <td>1.4
+      </td>
+   </tr>
+   <tr>
+      <td>Repulsion weight
+      </td>
+      <td>0.7
+      </td>
+   </tr>
+   <tr>
+      <td>Self weight
+      </td>
+      <td>1
+      </td>
+   </tr>
+   <tr>
+      <td>Orientation weight
+      </td>
+      <td>2
+      </td>
+   </tr>
+</table>
+
+
+<p>
+   In our model these parameters give a migratory solution, in other words the steady state is that most or all fish
+   move together in a defined direction. These “healthy” fish are used as our baseline and we want to see if we can tell
+   them apart from other fish whose parameters we have changed, coined “sick” fish.
+</p>
+<p>
+   Parameters for “sick” fish during steady state classification
+</p>
+
+<table>
+   <tr>
+      <td>Parameter
+      </td>
+      <td>value
+      </td>
+   </tr>
+   <tr>
+      <td>Radius of attraction
+      </td>
+      <td>150
+      </td>
+   </tr>
+   <tr>
+      <td>Radius of orientation
+      </td>
+      <td>45
+      </td>
+   </tr>
+   <tr>
+      <td>Radius of repulsion
+      </td>
+      <td>10
+      </td>
+   </tr>
+   <tr>
+      <td>Attraction weight
+      </td>
+      <td>0.7
+      </td>
+   </tr>
+   <tr>
+      <td>Repulsion weight
+      </td>
+      <td>0.35
+      </td>
+   </tr>
+   <tr>
+      <td>Self weight
+      </td>
+      <td>3
+      </td>
+   </tr>
+   <tr>
+      <td>Orientation weight
+      </td>
+      <td>1.5
+      </td>
+   </tr>
+</table>
+
+
+<p>
+   The sick fish in this simulation are less reactive and have a lower affinity to orient with others and move towards
+   others. While the choices of parameters might seem a bit arbitrary the important thing here is that the change in
+   parameters does not change the type of steady state that we end up in. So the system with these parameters has a
+   migratory solution. For us to say that we are comparing them this is most important part. Some solutions might be
+   circular or still, comparing them to each other and saying one detects the difference has no value. To clarify, if
+   the parameters changes in such a way that the steady state becomes stationary or circular then these are just two
+   legitimate solutions to the system. So telling them apart does not mean schooling performance has changed.
+</p>
+<p>
+   Our classification results are evaluated with the terms accuracy, precision and recall. Accuracy is defined as
+
+
+
+   <img src="https://2020.igem.org/wiki/images/5/58/T--UiOslo_Norway--accuracy.png" width="" alt="Accuracy"
+      title="Accuracy">
+   where TP is true positive, TN is true negative, FP is false positive and FN is false negative. True refers to a
+   correct classification and false refers to a wrong classification.
+</p>
+<p>
+   Precision is defined as
+
+   <img src="https://2020.igem.org/wiki/images/5/56/T--UiOslo_Norway--Precision.png" width="" alt="precision" title="precision>
     and recall as 
     
 
-    <img src="https://2020.igem.org/wiki/images/b/be/T--UiOslo_Norway--Recall.png" width="" alt="recall" title="recall">
-     we then construct what is called a confusion matrix as seen below.
-    </p>
-    
-    <table>
-      <tr>
-       <td>Classified\True
-       </td>
-       <td>Healthy
-       </td>
-       <td>Sick
-       </td>
-       <td>Precision
-       </td>
-      </tr>
-      <tr>
-       <td>Healthy
-       </td>
-       <td>TP
-       </td>
-       <td>FP
-       </td>
-       <td>
-    
-   
-    
-    <img src="https://2020.igem.org/wiki/images/5/56/T--UiOslo_Norway--Precision.png" width="" alt="alt_text" title="image_tooltip">
-    
-       </td>
-      </tr>
-      <tr>
-       <td>Sick
-       </td>
-       <td>FN
-       </td>
-       <td>TN
-       </td>
-       <td>
-    
-   
-    <img src="https://2020.igem.org/wiki/images/6/64/T--UiOslo_Norway--PrecisionN.png" width="" alt="PrecisionN" title="PrecisionN">
-    
-       </td>
-      </tr>
-      <tr>
-       <td>Recall
-       </td>
-       <td>
-    
-    <img src="https://2020.igem.org/wiki/images/b/be/T--UiOslo_Norway--Recall.png" width="" alt="Recall" title="Recall">
-    
-       </td>
-       <td>
-    
+    <img src=" https://2020.igem.org/wiki/images/b/be/T--UiOslo_Norway--Recall.png" width="" alt="recall"
+      title="recall">
+   we then construct what is called a confusion matrix as seen below.
+</p>
 
-    
-    
-    <img src="https://2020.igem.org/wiki/images/7/76/T--UiOslo_Norway--RecallN.png" width="" alt="RecallN" title="RecallN">
-    
-       </td>
-       <td>
-    
-   
-    
-    
-    <img src="https://2020.igem.org/wiki/images/5/58/T--UiOslo_Norway--accuracy.png" width="" alt="accuracy" title="accuracy">
-    
-       </td>
-      </tr>
-    </table>
-    
-    
-    <p>
-                       
-    </p>
-    <p>
-    With this setup we routinely get an accuracy of over 65%, in the case shown below we had a good run, getting an accuracy of 71.25%. These changes are caused by differences in initialization of the neural network, the initial weights are always random in the beginning.
-    </p>
-    
-    <table>
-      <tr>
-       <td>Classified\True
-       </td>
-       <td>Healthy
-       </td>
-       <td>Sick
-       </td>
-       <td>Precision
-       </td>
-      </tr>
-      <tr>
-       <td>Healthy
-       </td>
-       <td>61
-       </td>
-       <td>33
-       </td>
-       <td>0.65
-       </td>
-      </tr>
-      <tr>
-       <td>Sick
-       </td>
-       <td>13
-       </td>
-       <td>53
-       </td>
-       <td>0.80
-       </td>
-      </tr>
-      <tr>
-       <td>Recall
-       </td>
-       <td>0.82
-       </td>
-       <td>0.62
-       </td>
-       <td>Accuracy: 0.7125
-       </td>
-      </tr>
-    </table>
-    
-    
-    <p>
-    Transient 
-    </p>
-    <p>
-    Here we sample between 0-70% of the simulation, and we use the same parameters for sick and healthy as above. We then have the same interval size, but the additional information is contained in the phase transition. While the accuracy here is also variable we routinely see it go over 74%.
-    </p>
-    
-    <table>
-      <tr>
-       <td>Classified\True
-       </td>
-       <td>Healthy
-       </td>
-       <td>Sick
-       </td>
-       <td>Precision
-       </td>
-      </tr>
-      <tr>
-       <td>Healthy
-       </td>
-       <td>68
-       </td>
-       <td>23
-       </td>
-       <td>0.75
-       </td>
-      </tr>
-      <tr>
-       <td>Sick
-       </td>
-       <td>15
-       </td>
-       <td>54
-       </td>
-       <td>0.78
-       </td>
-      </tr>
-      <tr>
-       <td>Recall
-       </td>
-       <td>0.82
-       </td>
-       <td>0.70
-       </td>
-       <td>Accuracy: 0.7625
-       </td>
-      </tr>
-    </table>
-    
-    
-    <p>
-                       
-    </p>
-    <p>
-    These differences in accuracy might be a good indication that it would be the same case with real fish, and that also in the real world there would be extra information contained in the phase transition . The phase transition here is a transition between two different global behaviors. In our case we go from not schooling to schooling, in the real world it might be interesting to look at other phase transitions such as disruptions caused by feeding. The exact characteristic of these phase transitions is not known by us, only by the “black box” classifier, it might for example be the time it takes to form a school. One could maybe impose a phase transition in fish by feeding or making them change habitat routinely. This could for example be a system where some gates open and the fish are pushed slowly into another tank: doing this back and forth might allow for frequent observation of phase transitions. While our accuracy might not be perfect, it is not of great concern. This is because in the real world, one could measure and evaluate many times, and if the number of “sick” classifications is high then one could contact a veterinarian or follow some procedure. It makes sense that in the early phases of a disease there is little information to indicate its presence. Therefore, early classification would come with some unreliability. But we are sure others can take this much further. Another result that we believe to be important is that these changes are very hard to spot as humans, even with such drastic parameter changes. As mentioned in our other texts most of the behavioral symptoms described in literature are quite obvious to humans in a disease situation. They have been documented and used by for example veterinarians, but we believe that some smaller changes changes might actually occur much earlier and our project shows that technology can pick up these changes much better than humans at an early stage.
-    </p>
-    
+<table>
+   <tr>
+      <td>Classified\True
+      </td>
+      <td>Healthy
+      </td>
+      <td>Sick
+      </td>
+      <td>Precision
+      </td>
+   </tr>
+   <tr>
+      <td>Healthy
+      </td>
+      <td>TP
+      </td>
+      <td>FP
+      </td>
+      <td>
+
+
+
+         <img src="https://2020.igem.org/wiki/images/5/56/T--UiOslo_Norway--Precision.png" width="" alt="alt_text"
+            title="image_tooltip">
+
+      </td>
+   </tr>
+   <tr>
+      <td>Sick
+      </td>
+      <td>FN
+      </td>
+      <td>TN
+      </td>
+      <td>
+
+
+         <img src="https://2020.igem.org/wiki/images/6/64/T--UiOslo_Norway--PrecisionN.png" width="" alt="PrecisionN"
+            title="PrecisionN">
+
+      </td>
+   </tr>
+   <tr>
+      <td>Recall
+      </td>
+      <td>
+
+         <img src="https://2020.igem.org/wiki/images/b/be/T--UiOslo_Norway--Recall.png" width="" alt="Recall"
+            title="Recall">
+
+      </td>
+      <td>
+
+
+
+
+         <img src="https://2020.igem.org/wiki/images/7/76/T--UiOslo_Norway--RecallN.png" width="" alt="RecallN"
+            title="RecallN">
+
+      </td>
+      <td>
+
+
+
+
+         <img src="https://2020.igem.org/wiki/images/5/58/T--UiOslo_Norway--accuracy.png" width="" alt="accuracy"
+            title="accuracy">
+
+      </td>
+   </tr>
+</table>
+
+
+<p>
+
+</p>
+<p>
+   With this setup we routinely get an accuracy of over 65%, in the case shown below we had a good run, getting an
+   accuracy of 71.25%. These changes are caused by differences in initialization of the neural network, the initial
+   weights are always random in the beginning.
+</p>
+
+<table>
+   <tr>
+      <td>Classified\True
+      </td>
+      <td>Healthy
+      </td>
+      <td>Sick
+      </td>
+      <td>Precision
+      </td>
+   </tr>
+   <tr>
+      <td>Healthy
+      </td>
+      <td>61
+      </td>
+      <td>33
+      </td>
+      <td>0.65
+      </td>
+   </tr>
+   <tr>
+      <td>Sick
+      </td>
+      <td>13
+      </td>
+      <td>53
+      </td>
+      <td>0.80
+      </td>
+   </tr>
+   <tr>
+      <td>Recall
+      </td>
+      <td>0.82
+      </td>
+      <td>0.62
+      </td>
+      <td>Accuracy: 0.7125
+      </td>
+   </tr>
+</table>
+
+
+<p>
+   Transient
+</p>
+<p>
+   Here we sample between 0-70% of the simulation, and we use the same parameters for sick and healthy as above. We then
+   have the same interval size, but the additional information is contained in the phase transition. While the accuracy
+   here is also variable we routinely see it go over 74%.
+</p>
+
+<table>
+   <tr>
+      <td>Classified\True
+      </td>
+      <td>Healthy
+      </td>
+      <td>Sick
+      </td>
+      <td>Precision
+      </td>
+   </tr>
+   <tr>
+      <td>Healthy
+      </td>
+      <td>68
+      </td>
+      <td>23
+      </td>
+      <td>0.75
+      </td>
+   </tr>
+   <tr>
+      <td>Sick
+      </td>
+      <td>15
+      </td>
+      <td>54
+      </td>
+      <td>0.78
+      </td>
+   </tr>
+   <tr>
+      <td>Recall
+      </td>
+      <td>0.82
+      </td>
+      <td>0.70
+      </td>
+      <td>Accuracy: 0.7625
+      </td>
+   </tr>
+</table>
+
+
+<p>
+
+</p>
+<p>
+   These differences in accuracy might be a good indication that it would be the same case with real fish, and that also
+   in the real world there would be extra information contained in the phase transition . The phase transition here is a
+   transition between two different global behaviors. In our case we go from not schooling to schooling, in the real
+   world it might be interesting to look at other phase transitions such as disruptions caused by feeding. The exact
+   characteristic of these phase transitions is not known by us, only by the “black box” classifier, it might for
+   example be the time it takes to form a school. One could maybe impose a phase transition in fish by feeding or making
+   them change habitat routinely. This could for example be a system where some gates open and the fish are pushed
+   slowly into another tank: doing this back and forth might allow for frequent observation of phase transitions. While
+   our accuracy might not be perfect, it is not of great concern. This is because in the real world, one could measure
+   and evaluate many times, and if the number of “sick” classifications is high then one could contact a veterinarian or
+   follow some procedure. It makes sense that in the early phases of a disease there is little information to indicate
+   its presence. Therefore, early classification would come with some unreliability. But we are sure others can take
+   this much further. Another result that we believe to be important is that these changes are very hard to spot as
+   humans, even with such drastic parameter changes. As mentioned in our other texts most of the behavioral symptoms
+   described in literature are quite obvious to humans in a disease situation. They have been documented and used by for
+   example veterinarians, but we believe that some smaller changes changes might actually occur much earlier and our
+   project shows that technology can pick up these changes much better than humans at an early stage.
+</p>
+
 
 <h2>Parameters that are kept constant</h2>
 
 <table>
-  <tr>
-   <td>Name
-</p>
-   </td>
-   <td>Value
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Length of the sides of cubic tank (boundary)
-</p>
-   </td>
-   <td>1000
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Scalar multiple for initial normally distributed fish position
-</p>
-   </td>
-   <td>100
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Amplitude for normally distributed velocity noise (mu=0, sigma=1)
-</p>
-   </td>
-   <td>0.3
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Amplitude for normally distributed position noise (mu=0, sigma=1)
-</p>
-   </td>
-   <td>1
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Number of fish
-</p>
-   </td>
-   <td>100
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Number of dimensions
-</p>
-   </td>
-   <td>3
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Time step
-</p>
-   </td>
-   <td>0.3
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Number of steps 
-</p>
-   </td>
-   <td>2000
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Mean velocity
-</p>
-   </td>
-   <td>1
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Max velocity
-</p>
-   </td>
-   <td>3
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Initial variance of velocity
-</p>
-   </td>
-   <td>1
-</p>
-   </td>
-  </tr>
-  <tr>
-   <td>Number of measurements
-</p>
-   </td>
-   <td>50
-</p>
-   </td>
-  </tr>
+   <tr>
+      <td>Name
+         </p>
+      </td>
+      <td>Value
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Length of the sides of cubic tank (boundary)
+         </p>
+      </td>
+      <td>1000
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Scalar multiple for initial normally distributed fish position
+         </p>
+      </td>
+      <td>100
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Amplitude for normally distributed velocity noise (mu=0, sigma=1)
+         </p>
+      </td>
+      <td>0.3
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Amplitude for normally distributed position noise (mu=0, sigma=1)
+         </p>
+      </td>
+      <td>1
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Number of fish
+         </p>
+      </td>
+      <td>100
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Number of dimensions
+         </p>
+      </td>
+      <td>3
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Time step
+         </p>
+      </td>
+      <td>0.3
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Number of steps
+         </p>
+      </td>
+      <td>2000
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Mean velocity
+         </p>
+      </td>
+      <td>1
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Max velocity
+         </p>
+      </td>
+      <td>3
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Initial variance of velocity
+         </p>
+      </td>
+      <td>1
+         </p>
+      </td>
+   </tr>
+   <tr>
+      <td>Number of measurements
+         </p>
+      </td>
+      <td>50
+         </p>
+      </td>
+   </tr>
 </table>
-    
-    
-    <p>
-    <strong>Bibliography </strong>
-    </p>
-    <p>
-    <strong>	 	 	 	</strong>
-    </p>
-    <p>
-    [1] Alethea Barbaro , Bjorn Birnir, Kirk Taylor, (2006) “Simulating The Collective Behavior of Schooling FishvWith A Discrete Stochastic Model” funded byThe National Science Foundation,The Research Fund of The University of Iceland, https://www.mrl.ucsb.edu/sites/default/files/mrl_docs/ret_attachments/research/KTaylor.pdf
-    </p>
-    <p>
-    [2] T. Vicsek, A. Czirok, E. Ben-Jacob, I. Cohen, and O. Shochet. Novel type of phase transition in a system of self-driven particles. Physical Review Letters, 75(6): 1226-1229, 1995
-    </p>
-    <p>
-    [3] Uchitane, T., Ton, T. V., & Yagi, A. (2015). An Ordinary Differential Equation Model for Fish Schooling. arXiv, 1508.05597. Retrieved from https://arxiv.org/abs/1508.05597v2
-    </p>
-    <p>
-    [4] Lisette de Boer (2010) “What makes fish school?”,Master Thesis ,Mathematical Institute, Leiden University
-    </p>
-    <p>
-    [5] Kingma, D., & Ba, J. (2014). Adam: A Method for Stochastic Optimization. International Conference on Learning Representations. Retrieved from https://www.researchgate.net/publication/269935079_Adam_A_Method_for_Stochastic_Optimization
-    </p>
+
+
+<p>
+   <strong>Bibliography </strong>
+</p>
+<p>
+   <strong> </strong>
+</p>
+<p>
+   [1] Alethea Barbaro , Bjorn Birnir, Kirk Taylor, (2006) “Simulating The Collective Behavior of Schooling FishvWith A
+   Discrete Stochastic Model” funded byThe National Science Foundation,The Research Fund of The University of Iceland,
+   https://www.mrl.ucsb.edu/sites/default/files/mrl_docs/ret_attachments/research/KTaylor.pdf
+</p>
+<p>
+   [2] T. Vicsek, A. Czirok, E. Ben-Jacob, I. Cohen, and O. Shochet. Novel type of phase transition in a system of
+   self-driven particles. Physical Review Letters, 75(6): 1226-1229, 1995
+</p>
+<p>
+   [3] Uchitane, T., Ton, T. V., & Yagi, A. (2015). An Ordinary Differential Equation Model for Fish Schooling. arXiv,
+   1508.05597. Retrieved from https://arxiv.org/abs/1508.05597v2
+</p>
+<p>
+   [4] Lisette de Boer (2010) “What makes fish school?”,Master Thesis ,Mathematical Institute, Leiden University
+</p>
+<p>
+   [5] Kingma, D., & Ba, J. (2014). Adam: A Method for Stochastic Optimization. International Conference on Learning
+   Representations. Retrieved from
+   https://www.researchgate.net/publication/269935079_Adam_A_Method_for_Stochastic_Optimization
+</p>
+
 </html>
